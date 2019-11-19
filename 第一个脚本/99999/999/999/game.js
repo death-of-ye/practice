@@ -44,7 +44,7 @@ var main = function () {
             } else {
                 var res = JSON.parse(res)
                 是否执行新手任务 = res.checkbox[0].checked;
-                是否打BOSS任务 = res.checkbox[1].checked;
+                是否打BOSS任务 = res.checkbsox[1].checked;
                 是否打副本任务 = res.checkbox[2].checked;
                 是否打竞技任务 = res.checkbox[3].checked;
             }
