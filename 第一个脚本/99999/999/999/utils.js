@@ -5,6 +5,7 @@
 //     "deviceWidth": utils.deviceWidth, //设备宽度
 //     "deviceHeight": utils.deviceHeight, //设备宽度
 //     "mapList": utils.mapList, //区域找图规则
+//     "returnArea":utils.returnArea // 返回区域数组
 //     "log": utils.log, //只打log日志
 //     "toastLog": utils.toastLog, //toast吐司+log日志
 //     "click": utils.click, //带偏移量的click方法
@@ -31,13 +32,13 @@ utils.commonImage = '';
 /**
  * @function 为commonImage赋值
  */
-utils.screenCommonImage = () => {
+utils.screenCommonImage = ()=>{
     utils.commonImage = captureScreen();
 }
 /**
  * @function 清空commonImage
  */
-utils.emptyCommonImage = () => {
+utils.emptyCommonImage = ()=>{
     utils.commonImage = '';
 }
 utils.deviceWidth = context.resources.configuration.orientation == 1 ? device.width : device.height;
@@ -77,6 +78,15 @@ utils.mapList = [
     }
 ];
 /**
+ * @function 返回区域数组
+ * @param {区域类型} areaType 0 1 2
+ * @param {区域id}  areaIndex 0 1 2 或3
+ * @example utils.returnArea(0,0) => [0,0,deviceWidth/2,deviceHeight/2]
+ */
+utils.returnArea = (areaType,areaIndex)=>{
+	return [utils.mapList[areaType].area[areaIndex].x, utils.mapList[areaType].area[areaIndex].y, utils.mapList[areaType].w, utils.mapList[areaType].h];
+}
+/**
  * @function log日志
  * @param {log文本} msg 
  */
@@ -99,11 +109,11 @@ utils.toastLog = (msg) => {
  * @param {点击时长}  duration 可不传 默认为150
  * @example click(100,200,10,20)  实则点击了(110,220)位置
  */
-utils.click = (x, y, OffsetX, OffsetY, duration) => {
+utils.click = (x, y, OffsetX, OffsetY,duration) => {
     if (!OffsetX) OffsetX = 0;
     if (!OffsetY) OffsetY = 0;
-    if (!duration) duration = 150;
-    press(x + OffsetX, y + OffsetY, duration);
+    if (!duration) duration = 80;
+    press(x + OffsetX, y + OffsetY,duration);
 }
 
 /**
@@ -115,8 +125,8 @@ utils.click = (x, y, OffsetX, OffsetY, duration) => {
  * @param {结束点y}  endY
  * @example utils.gesture(1000,150,100,300,450);
  */
-utils.gesture = (duration, startX, startY, endX, endY) => {
-    gesture(duration, [startX, startY], [endX, endY]);
+utils.gesture = (duration,startX,startY,endX,endY)=>{
+    gesture(duration,[startX,startY],[endX,endY]);
 }
 
 
@@ -124,7 +134,7 @@ utils.gesture = (duration, startX, startY, endX, endY) => {
  * @function 设置脚本坐标点击所适合的屏幕宽高
  */
 utils.setScreenMetrics = () => {
-    setScreenMetrics(1080, device.height * 1080 / device.width);
+    setScreenMetrics(1080,device.height * 1080 / device.width);
 }
 /**
  * @function 全屏找图
@@ -140,7 +150,6 @@ utils.findImageFullScreen = (base64, threshold) => {
         threshold: threshold
     })
     return 查找结果;
-    // {x:120,y:120};
 }
 /**
  * @function 指定区域找图
@@ -163,7 +172,7 @@ utils.findImage = (base64, areaType, areaIndex, threshold) => {
         查找结果.x += mapList[areaType].area[areaIndex].x;
         查找结果.y += mapList[areaType].area[areaIndex].y;
     }
-    // utils.log(查找结果);
+    utils.log(查找结果);
     return 查找结果;
 }
 
@@ -204,7 +213,7 @@ utils.customAreaFindImageNoClick = (base64, startX, startY, w, h, threshold) => 
  * @param {找色时颜色相似度的临界值} threshold 
  * @param {x轴偏移量} OffsetX  可不传 默认为0
  * @param {y轴偏移量} OffsetY 可不传 默认为0
- * @example findColorNoClick("#45A9F6",[[10,0,"#ff9900"],[20,0,"#ffff00"]],[],10) 
+ * @example findColorNoClick("#444D5D",[[10,0,"#ff9900"],[20,0,"#ffff00"]],[],20) 
  */
 utils.findColorNoClick = (firstColor, colorList, positionArray, threshold, OffsetX, OffsetY) => {
     var img = utils.commonImage ? utils.commonImage : captureScreen();
@@ -215,7 +224,7 @@ utils.findColorNoClick = (firstColor, colorList, positionArray, threshold, Offse
     })
     if (!OffsetX) OffsetX = 0;
     if (!OffsetY) OffsetY = 0;
-    if (查找结果) {
+    if(查找结果){
         查找结果.x += OffsetX;
         查找结果.y += OffsetY;
     }
@@ -230,12 +239,12 @@ utils.findColorNoClick = (firstColor, colorList, positionArray, threshold, Offse
  * @param {区域找图id} areaIndex  0 1 2 3 不传则代表全图找图
  * @example 等待指定图片出现(baseImg,1000,1,10,0.7,1,3) 
  */
-utils.findModel = (baseImg, threshold, areaType, areaIndex) => {
+utils.findModel = (baseImg,threshold,areaType,areaIndex)=>{
     var 查找图片结果;
     if (areaType === 0 || areaType || areaIndex === 0 || areaIndex) {
-        查找图片结果 = UTILS.findImage(baseImg, areaType, areaIndex, threshold);
+        查找图片结果 = UTILS.findImage(baseImg,areaType,areaIndex,threshold);
     } else {
-        查找图片结果 = UTILS.findImageFullScreen(baseImg, threshold);
+        查找图片结果 = UTILS.findImageFullScreen(baseImg,threshold);
     }
     return 查找图片结果;
 }
@@ -250,7 +259,7 @@ utils.findModel = (baseImg, threshold, areaType, areaIndex) => {
  * @param {未找到图之后的方法} failedCallback 
  * @param {区域找图方式} areaType  0 1 2  不传则代表全图找图
  * @param {区域找图id} areaIndex  0 1 2 3 不传则代表全图找图
- * @example waitViewUntilFindSpecifiedTimes(3000,1,20,baseImg,0.7,()=>{utils.log("执行找到了后的操作");},()=>{utils.log("执行未找到后的操作");},1,3) 
+ * @example waitViewUntilFindSpecifiedTimes(3000,1,20,baseImg,1000,1,10,0.7,()=>{utils.log("执行找到了后的操作");},()=>{utils.log("执行未找到后的操作");},1,3) 
  */
 utils.waitViewUntilFindSpecifiedTimes = (sleepTime, times, maxTimes, baseImg, threshold, successCallback, failedCallback, areaType, areaIndex) => {
     utils.log("第" + times + "次查找");
@@ -280,6 +289,4 @@ utils.checkCurrentPackage = (packageName) => {
         return false;
     }
 }
-
-
 module.exports = utils;

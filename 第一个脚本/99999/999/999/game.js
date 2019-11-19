@@ -1,8 +1,8 @@
 ﻿/**
  * 霸刀传奇无限版
  */
-var IMAGE = require('./image.js.js.js.js');
-var UTILS = require('./utils.js.js.js.js');
+var IMAGE = require('./image.js');
+var UTILS = require('./utils.js');
 
 const 游戏包名 = "com.game456.bdcqbt";
 const 游戏名称 = "霸刀无限版";
@@ -12,10 +12,10 @@ var version = 999;
 //指定文件路径"./sdcard/                                    脚本/游戏ID/脚本ID/版本ID/config.json";
 var filePath = "/sdcard/脚本/" + gameId + "/" + auxiliaryId + "/" + version + "/config.json";
 
-var 是否执行新手任务 = true;
-var 是否打BOSS任务 = true;
-var 是否打副本任务 = true;
-var 是否打竞技任务 = true;
+var 是否执行新手任务 = false;
+var 是否打BOSS任务 = false;
+var 是否打副本任务 = false;
+var 是否打竞技任务 = false;
 
 var 通用休眠时间 = 1000;
 var 战力提升时间 = new Date();
@@ -64,62 +64,125 @@ var main = function () {
 
     this.开始运行 = () => {
 
-
+        let xx = UTILS.deviceWidth / 2;
+        let yy = UTILS.deviceHeight / 2;
+        let ss = UTILS.findColorNoClick("#455728",[[42,4,"#7F8618"],[48,31,"#33C029"],[41,66,"#2F3122"]],[467,1268,300,300],20);
+        log(ss)
+        UTILS.click(ss.x,ss.y);
+        return;
         // 副本
-        // this.点击副本();
-        // // let 副本挑战次数 = 0;
-        // // let timer = setInterval(() => {
-        // //     this.点击副本挑战();
-        // //     副本挑战次数 += 1;
-        // //     if (副本挑战次数 > 3) {
-        // //         clearInterval(timer);
-        // //     }
-        // // }, 5000);
-        // // this.点击副本扫荡();
-        // // var 扫荡次数 = 0;
-        // // let timer = setInterval(() => {
-        // //     this.点击副本扫荡();
-        // //     扫荡次数 += 1;
-        // //     console.log(扫荡次数);
-        // //     if (扫荡次数 > 7) {
-        // //         clearInterval(timer);
-        // //     }
-        // // }, 2000);
+        this.点击副本();
+        let 副本挑战次数 = 0;
+        let 副本挑战时间 = setInterval(() => {
+            // this.点击副本挑战();
+            副本挑战次数 += 1;
+            if (副本挑战次数 > 0) {
+                clearInterval(副本挑战时间);
+                sleep(1000);
+                this.点击副本扫荡();
+                var 扫荡次数 = 0;
+                let 副本扫荡时间 = setInterval(() => {
+                    // this.点击副本扫荡();
+                    扫荡次数 += 1;
+                    console.log(扫荡次数);
+                    if (扫荡次数 > 0) {
+                        clearInterval(副本扫荡时间);
+                        // sleep(2000);
+                        // this.点击经验副本();
+                        // sleep(2000);
+                        // this.点击经验副本挑战();
+                        // sleep(60000);
+                        // this.领取经验奖励();
+                        // sleep(2000);
+                        // this.点击经验副本挑战();
+                        // sleep(60000);
+                        // this.领取经验奖励();
+                        // sleep(2000);
+                        // this.点击通天塔();
+                        // sleep(2000);
+                        // this.领取通天塔每日奖励();
+                        // sleep(3000);
+                        // this.通天塔挑战();
+                        // this.通天塔挑战失败();
+                        // this.点击玩法();
+                        // sleep(2000);
+                        // this.进入玩法();
+                        // sleep(2000);
+                        // // this.自动掷骰子();
+                        sleep(2000);
+                        this.点击返回按钮();
+                        sleep(2000);
+                        this.点击角色();
+                        sleep(2000);
+                        if(this.判断有没有一键换装() != null){
+                            this.点击一键换装();
+                        }
+                        // sleep(2000);
+                        // this.点击特戒();
+                        // sleep(2000);
+                        // this.点击特戒_item();
+                        sleep(2000)
+                        this.点击神装();
+                        sleep(2000);
+                        this.战士角色();
+                        sleep(2000);
+                        this.神装合成();
+                        sleep(2000);
+                        this.合成按钮();
+                        sleep(2000);
+                        this.法师角色();
+                        sleep(2000);
+                        this.神装合成();
+                        sleep(2000);
+                        this.合成按钮();
+                        sleep(2000);
+                        this.道士角色();
+                        sleep(2000);
+                        this.神装合成();
+                        sleep(2000);
+                        this.合成按钮();
+                        sleep(2000);
+                        this.点击返回按钮();
+                        sleep(2000);
+                        this.宝物();
+                        sleep(2000);
+                        this.战士角色();
+                        sleep(2000);
+                        this.宝物提升();
+                        sleep(5000);
+                        this.法师角色();
+                        sleep(2000);
+                        this.宝物提升();
+                        sleep(5000);
+                        this.道士角色();
+                        sleep(2000);
+                        this.宝物提升();
+                        sleep(5000);
+                        this.点击返回按钮();
+                        sleep(2000);
+                        this.点击返回按钮();
+                        sleep(2000);
 
-        // // sleep(1000);
-        // // // this.点击经验副本挑战();
-        // // // sleep(50000);
-        // // this.领取经验奖励();
-        // // sleep(2000);
-        // // this.点击经验副本挑战();
-        // // sleep(200000);
-        // // this.领取经验奖励();
-        // // sleep(2000);
+                        this.点击boss();
+                        sleep(2000);
+                        let boss挑战时间 = setInterval(() => {
+                            this.boss挑战();
+                            let boss挑战 = this.暂无挑战();
+                            let boss失败 = this.boss挑战失败();
+                            if(boss挑战 == null || boss失败 != null) {
+                                clearInterval(boss挑战时间);
+                            }
+                        },60000);
+                    }
+                }, 2000);
+            }
+        }, 2000);
 
-        // // this.点击通天塔();
-        // // this.通天塔挑战();
-        // // this.通天塔挑战失败();
 
-        // this.点击玩法();
-        // sleep(2000);
-        // this.进入玩法();
-        // sleep(2000);
-        // this.点击返回按钮();
-        // sleep(2000);
-        // this.点击角色();
-        // sleep(2000);
-        // // this.点击一键换装();
-        // // sleep(2000);
-        // this.点击特戒();
-        // sleep(2000);
-        // this.点击特戒_item();
-        // sleep(2000)
-        // this.点击神装();
-        // sleep(2000);
-        // this.神装合成();
-        // sleep(2000);
-        // this.合成按钮();
-        // sleep(2000);
+
+
+
+
 
         // this.点击背包();
         // sleep(2000);
@@ -165,24 +228,26 @@ var main = function () {
         // sleep(3000);
 
 
-        this.点击boss();
-        sleep(2000);
-        // let boss挑战时间 = setInterval(() => {
-        //     this.boss挑战();
-        //     let boss挑战 = this.暂无挑战();
-        //     if(boss挑战 == null) {
-        //         clearInterval(boss挑战时间);
-        //     }
-        // },60000);
-        // this.野外BOSS();
+        // this.点击boss();
         // sleep(2000);
-        // this.野外BOSS挑战();
-        this.boss之家();
-        sleep(2000);
-        this.boss之家挑战();
-        sleep(2000);
-        this.boss之家挑战_item();
-
+        // // let boss挑战时间 = setInterval(() => {
+        // //     this.boss挑战();
+        // //     let boss挑战 = this.暂无挑战();
+        // //     if(boss挑战 == null) {
+        // //         clearInterval(boss挑战时间);
+        // //     }
+        // // },60000);
+        // // this.野外BOSS();
+        // // sleep(2000);
+        // // this.野外BOSS挑战();
+        // this.boss之家();
+        // sleep(2000);
+        // this.boss之家挑战();
+        // sleep(2000);
+        // this.boss之家挑战_item();
+        // sleep(2000);
+        // this.boss之家分支挑战();
+        // sleep(2000);
         
     }
 
@@ -225,6 +290,7 @@ var main = function () {
     }
 
     this.点击经验副本 = () => {
+        console.log('点击经验副本');
         let arr = [];
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.经验副本, 1, 2, 0.7))
@@ -233,14 +299,17 @@ var main = function () {
     }
 
     this.点击经验副本挑战 = () => {
+        console.log('点击经验副本挑战');
         let arr = [];
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.经验副本挑战, 1, 2, 0.7))
         }
+        UTILS.toastLog(arr);
         UTILS.click(arr[1].x, arr[1].y);
     }
 
     this.领取经验奖励 = () => {
+        console.log('领取经验奖励');
         let arr = [];
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.领取经验奖励, 2, 2, 0.7))
@@ -290,6 +359,15 @@ var main = function () {
 
     }
 
+    this.领取通天塔每日奖励 = () => {
+        let arr = [];
+        for (var i = 0; i < 2; i++) {
+            arr.push(UTILS.findImage(IMAGE.通天塔每日奖励, 2, 0, 0.7))
+        }
+        // UTILS.toastLog(arr);
+        UTILS.click(arr[1].x, arr[1].y);
+    }
+
 
     this.点击玩法 = () => {
         //  // 点击玩法
@@ -297,6 +375,7 @@ var main = function () {
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.经验副本, 1, 2, 0.7))
         }
+        // console.log(arr);
         UTILS.click(arr[1].x * 3, arr[1].y);
     }
 
@@ -304,9 +383,18 @@ var main = function () {
     this.进入玩法 = () => {
         let arr = [];
         for (var i = 0; i < 2; i++) {
-            arr.push(UTILS.findImage(IMAGE.进入玩法, 1, 2, 0.7))
+            arr.push(UTILS.findImage(IMAGE.进入玩法, 2, 2, 0.7))
         }
-        console.log(arr[1].x, arr[1].y);
+        console.log(arr);
+        UTILS.click(arr[1].x, arr[1].y);
+    }
+
+    this.自动掷骰子 = () => {
+        let arr = [];
+        for (var i = 0; i < 2; i++) {
+            arr.push(UTILS.findImage(IMAGE.自动掷骰子, 0, 3, 0.7))
+        }
+        console.log(arr);
         UTILS.click(arr[1].x, arr[1].y);
     }
 
@@ -338,13 +426,17 @@ var main = function () {
         UTILS.click(arr[1].x, arr[1].y);
     }
 
+    this.判断有没有一键换装 = () => {
+        return UTILS.findImage(IMAGE.一键换装, 2, 1, 0.7);
+    }
+
     this.点击特戒 = () => {
         let arr = [];
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.特戒, 1, 2, 0.7))
         }
         console.log(arr);
-        // UTILS.click(arr[1].x, arr[1].y); 
+        UTILS.click(arr[1].x, arr[1].y);
     }
 
     this.点击特戒_item = () => {
@@ -352,7 +444,7 @@ var main = function () {
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.特戒副本, 1, 2, 0.7))
         }
-        // console.log(arr);
+        console.log(arr);
         UTILS.click(arr[1].x, arr[1].y);
     }
 
@@ -361,7 +453,7 @@ var main = function () {
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.神装, 1, 2, 0.7))
         }
-        console.log(arr);
+        console.log(arr, 1111);
         UTILS.click(arr[1].x, arr[1].y);
     }
 
@@ -392,6 +484,87 @@ var main = function () {
         UTILS.click(arr[1].x, arr[1].y);
     }
 
+    this.战士角色 = () => {
+        let arr = [];
+        for (var i = 0; i < 2; i++) {
+            arr.push(UTILS.findImage(IMAGE.战士角色, 1, 0, 0.7))
+        }
+        console.log(arr);
+        // UTILS.click(arr[1].x, arr[1].y);
+    }
+
+    this.法师角色 = () => {
+        let arr = [];
+        for (var i = 0; i < 2; i++) {
+            arr.push(UTILS.findImage(IMAGE.法师角色, 1, 0, 0.7))
+        }
+        console.log(arr);
+        UTILS.click(arr[1].x, arr[1].y);
+    }
+
+    this.道士角色 = () => {
+        let arr = [];
+        for (var i = 0; i < 2; i++) {
+            arr.push(UTILS.findImage(IMAGE.道士角色, 1, 0, 0.7))
+        }
+        console.log(arr);
+        UTILS.click(arr[1].x, arr[1].y);
+    }
+
+    this.宝物 = () => {
+        var 宝物 = UTILS.findImage(IMAGE.宝物, 1, 2);
+        console.log(宝物);
+        UTILS.click(宝物.x, 宝物.y);
+    }
+
+    this.宝物提升 = () => {
+        var 宝物提升 = UTILS.findImage(IMAGE.宝物提升, 1, 2);
+        // console.log(宝物提升);
+        UTILS.click(宝物提升.x, 宝物提升.y);
+    }
+
+    this.玉佩 = () => {
+        var 玉佩 = UTILS.findImage(IMAGE.宝物分支, 1, 2);
+        console.log(玉佩);
+        UTILS.click(玉佩.x, 玉佩.y);
+    }
+
+
+    this.心法 = () => {
+        var 玉佩 = UTILS.findImage(IMAGE.宝物分支, 1, 2);
+        console.log(玉佩);
+        UTILS.click(玉佩.x + 200, 玉佩.y);
+    }
+
+    this.兽神守护 = () => {
+        var 玉佩 = UTILS.findImage(IMAGE.宝物分支, 1, 2);
+        console.log(玉佩);
+        UTILS.click(玉佩.x + 400, 玉佩.y);
+    }
+
+    this.魂骨 = () => {
+        var 玉佩 = UTILS.findImage(IMAGE.宝物分支, 1, 2);
+        console.log(玉佩);
+        UTILS.click(玉佩.x + 600, 玉佩.y);
+    }
+
+
+    this.战纹 = () => {
+        var 战纹 = UTILS.findImage(IMAGE.战纹, 1, 2);
+        console.log(战纹);
+        UTILS.click(战纹.x, 战纹.y);
+    }
+
+    this.战纹选择 = () => {
+        var 战纹选择 = UTILS.findImageFullScreen(IMAGE.战纹选择, 0.7);
+        console.log(战纹选择);
+        UTILS.click(战纹选择.x, 战纹选择.y);
+        var 战纹装备 = UTILS.findImage(IMAGE.战纹装备, 2, 2, 0.7);
+        console.log(战纹装备);
+        UTILS.click(战纹装备.x, 战纹装备.y);
+    }
+
+
     this.点击背包 = () => {
         let arr = [];
         for (var i = 0; i < 2; i++) {
@@ -420,7 +593,7 @@ var main = function () {
     }
 
     this.熔炼结束 = () => {
-        return UTILS.findImageFullScreen(IMAGE.背包熔炼,0.7);
+        return UTILS.findImageFullScreen(IMAGE.背包熔炼, 0.7);
     }
 
     this.熔炼返回 = () => {
@@ -429,7 +602,7 @@ var main = function () {
             arr.push(UTILS.findImage(IMAGE.熔炼返回, 2, 2, 0.7))
         }
         // console.log(arr);
-        UTILS.click(arr[1].x, arr[1].y);   
+        UTILS.click(arr[1].x, arr[1].y);
     }
 
     this.锻造 = () => {
@@ -450,7 +623,7 @@ var main = function () {
     }
 
     this.强化失败 = () => {
-       return UTILS.findImageFullScreen(IMAGE.強化失败,0.7);
+        return UTILS.findImageFullScreen(IMAGE.強化失败, 0.7);
     }
 
     this.锻造_精炼 = () => {
@@ -466,7 +639,7 @@ var main = function () {
     }
 
     this.精炼失败 = () => {
-        return UTILS.findImageFullScreen(IMAGE.精炼失败,0.7);
+        return UTILS.findImageFullScreen(IMAGE.精炼失败, 0.7);
     }
 
     this.锻造_锻造 = () => {
@@ -482,66 +655,71 @@ var main = function () {
     }
 
     this.锻造_锻造失败 = () => {
-        return UTILS.findImageFullScreen(IMAGE.锻造失败,0.7);
+        return UTILS.findImageFullScreen(IMAGE.锻造失败, 0.7);
     }
 
 
     this.点击boss = () => {
         let boss = UTILS.findImage(IMAGE.boss, 2, 2, 0.7);
-        UTILS.click(boss.x,boss.y);
+        UTILS.click(boss.x, boss.y);
     }
 
     this.boss挑战 = () => {
         let boss挑战 = UTILS.findImage(IMAGE.boss挑战, 1, 2, 0.7);
-        UTILS.click(boss挑战.x,boss挑战.y);
+        UTILS.click(boss挑战.x, boss挑战.y);
     }
 
     this.暂无挑战 = () => {
         let boss挑战 = UTILS.findImage(IMAGE.boss挑战, 1, 2, 0.7);
-        return boss挑战; 
+        return boss挑战;
+    }
+
+    this.boss挑战失败 = () => {
+        return UTILS.findImage(IMAGE.boss失败, 1, 2, 0.7);
     }
 
     this.野外BOSS = () => {
         let 野外BOSS = UTILS.findImage(IMAGE.野外boss, 1, 2, 0.7);
-        UTILS.click(野外BOSS.x,野外BOSS.y);
+        UTILS.click(野外BOSS.x, 野外BOSS.y);
         // console.log(野外BOSS);
     }
 
     this.野外BOSS挑战 = () => {
         let 野外BOSS挑战 = UTILS.findImage(IMAGE.野外boss挑战, 2, 2, 0.7);
         // console.log(野外BOSS挑战,11111);
-        UTILS.click(野外BOSS挑战.x,野外BOSS挑战.y);
+        UTILS.click(野外BOSS挑战.x, 野外BOSS挑战.y);
     }
 
     this.boss之家 = () => {
         let 野外BOSS = UTILS.findImage(IMAGE.野外boss, 1, 2, 0.7);
-        UTILS.click(野外BOSS.x + 800,野外BOSS.y);
+        UTILS.click(野外BOSS.x + 800, 野外BOSS.y);
     }
 
     this.boss之家挑战 = () => {
         let boss之家挑战 = UTILS.findImage(IMAGE.boss之家挑战, 2, 2, 0.7)
         // console.log(boss之家挑战);
-        UTILS.click(boss之家挑战.x,boss之家挑战.y);
+        UTILS.click(boss之家挑战.x, boss之家挑战.y);
     }
 
     this.boss之家挑战_item = () => {
         let boss之家挑战分支 = UTILS.findImage(IMAGE.boss之家挑战分支, 2, 2, 0.7)
         // console.log(boss之家挑战分支);
-        UTILS.click(boss之家挑战分支.x,boss之家挑战分支.y);
+        UTILS.click(boss之家挑战分支.x, boss之家挑战分支.y);
+    }
+
+    this.boss之家分支挑战 = () => {
+        let arr = [];
+        for (let i = 0; i < 2; i++) {
+            arr.push(UTILS.findImage(IMAGE.boss之家分支挑战, 2, 2, 0.7));
+        }
+        console.log(arr);
+        UTILS.click(arr[1].x, arr[1].y);
     }
 
     this.守护神剑 = () => {
         // 点击守护神剑
         var 经验副本 = UTILS.findImage(IMAGE.经验副本, 1, 2);
         UTILS.click(经验副本.x * 4, 经验副本.y);
-    }
-
-
-
-    this.宝物 = () => {
-        var 宝物 = UTILS.findImage(IMAGE.宝物, 1, 2);
-        console.log(宝物);
-        UTILS.click(宝物.x, 宝物.y);
     }
 
     this.小角色 = () => {
@@ -583,6 +761,11 @@ var main = function () {
     this.怪物攻城 = () => {
         var 怪物攻城 = UTILS.findImage(IMAGE.怪物攻城, 2, 2);
         console.log(怪物攻城);
+    }
+
+    this.信息 = () => {
+       return 
+    
     }
 
 
