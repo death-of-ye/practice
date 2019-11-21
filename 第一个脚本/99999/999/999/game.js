@@ -1091,11 +1091,25 @@ let main = function () {
         let 个人boss挑战时间 = setInterval(() => {
             let 个人boss挑战 = UTILS.findImage(IMAGE.boss挑战, 1, 2, 0.7);
             UTILS.log(个人boss挑战+'个人boss挑战');
+            let 副本 = UTILS.findImage(IMAGE.霸刀无限版, 2, 2);
             if(个人boss挑战 == null){
+                clearInterval(个人boss挑战时间);
+                sleep(3000);
+                UTILS.toastLog('个人boss挑战完毕');
+                sleep(3000);
+                let 野外BOSS = UTILS.findImage(IMAGE.野外boss, 1, 2, 0.7);
+                console.log(野外BOSS, '野外BOSS');
+                UTILS.click(野外BOSS.x, 野外BOSS.y);
+            }else if(副本 != null){
                 clearInterval(个人boss挑战时间);
                 sleep(3000);
                 UTILS.toastLog('请提升战力');
                 sleep(3000);
+                UTILS.click(boss.x, boss.y);
+                sleep(3000);
+                let 野外BOSS = UTILS.findImage(IMAGE.野外boss, 1, 2, 0.7);
+                console.log(野外BOSS, '野外BOSS');
+                UTILS.click(野外BOSS.x, 野外BOSS.y);
             }else{
                 UTILS.click(个人boss挑战.x, 个人boss挑战.y);
                 sleep(50000);
