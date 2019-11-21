@@ -10,8 +10,8 @@ var gameId = 99999; //542018;
 var auxiliaryId = 999;
 var version = 999;
 //指定文件路径"./sdcard/                                    脚本/游戏ID/脚本ID/版本ID/config.json";
-var filePath = "/sdcard/脚本/" + gameId + "/" + auxiliaryId + "/" + version + "/config.json";
-
+var filePath = "/storage/emulated/0/sdcard/脚本/" + gameId + "/" + auxiliaryId + "/" + version + "/config.json";
+// var filePath = "C:\Users\Administrator.ZGC-20161213KEO\Desktop\99999\practice\第一个脚本\99999\999\999\config.json";
 var 是否执行新手任务 = false;
 var 是否打BOSS任务 = false;
 var 是否打副本任务 = false;
@@ -30,8 +30,8 @@ var main = function () {
             UTILS.toastLog('请先运行游戏!')
             return;
         }
-        // this.initData(filePath);
-        // sleep(1000)
+        this.initData(filePath);
+        sleep(1000)
     }
     //读取指定位置文件内容配置初始化数据
     this.initData = (path) => {
@@ -64,121 +64,188 @@ var main = function () {
 
     this.开始运行 = () => {
 
-        let xx = UTILS.deviceWidth / 2;
-        let yy = UTILS.deviceHeight / 2;
-        let ss = UTILS.findColorNoClick("#455728",[[42,4,"#7F8618"],[48,31,"#33C029"],[41,66,"#2F3122"]],[467,1268,300,300],20);
-        log(ss)
-        UTILS.click(ss.x,ss.y);
-        return;
+        // let xx = UTILS.deviceWidth / 2;
+        // let yy = UTILS.deviceHeight / 2;
+        // let ss = UTILS.findColorNoClick("#E6CFB9",[[21,11,"#DA3935"],[10,10,"#F3EED5"],[12,8,"#E0887F"]],[UTILS.deviceWidth/3*2,0,UTILS.deviceWidth/3,yy],20,30,10);
+        // log(ss)
+        // // UTILS.click(ss.x,ss.y);
+        // return;
         // 副本
-        this.点击副本();
-        let 副本挑战次数 = 0;
-        let 副本挑战时间 = setInterval(() => {
-            // this.点击副本挑战();
-            副本挑战次数 += 1;
-            if (副本挑战次数 > 0) {
-                clearInterval(副本挑战时间);
-                sleep(1000);
-                this.点击副本扫荡();
-                var 扫荡次数 = 0;
-                let 副本扫荡时间 = setInterval(() => {
-                    // this.点击副本扫荡();
-                    扫荡次数 += 1;
-                    console.log(扫荡次数);
-                    if (扫荡次数 > 0) {
-                        clearInterval(副本扫荡时间);
-                        // sleep(2000);
-                        // this.点击经验副本();
-                        // sleep(2000);
-                        // this.点击经验副本挑战();
-                        // sleep(60000);
-                        // this.领取经验奖励();
-                        // sleep(2000);
-                        // this.点击经验副本挑战();
-                        // sleep(60000);
-                        // this.领取经验奖励();
-                        // sleep(2000);
-                        // this.点击通天塔();
-                        // sleep(2000);
-                        // this.领取通天塔每日奖励();
-                        // sleep(3000);
-                        // this.通天塔挑战();
-                        // this.通天塔挑战失败();
-                        // this.点击玩法();
-                        // sleep(2000);
-                        // this.进入玩法();
-                        // sleep(2000);
-                        // // this.自动掷骰子();
-                        sleep(2000);
-                        this.点击返回按钮();
-                        sleep(2000);
-                        this.点击角色();
-                        sleep(2000);
-                        if(this.判断有没有一键换装() != null){
-                            this.点击一键换装();
-                        }
-                        // sleep(2000);
-                        // this.点击特戒();
-                        // sleep(2000);
-                        // this.点击特戒_item();
-                        sleep(2000)
-                        this.点击神装();
-                        sleep(2000);
-                        this.战士角色();
-                        sleep(2000);
-                        this.神装合成();
-                        sleep(2000);
-                        this.合成按钮();
-                        sleep(2000);
-                        this.法师角色();
-                        sleep(2000);
-                        this.神装合成();
-                        sleep(2000);
-                        this.合成按钮();
-                        sleep(2000);
-                        this.道士角色();
-                        sleep(2000);
-                        this.神装合成();
-                        sleep(2000);
-                        this.合成按钮();
-                        sleep(2000);
-                        this.点击返回按钮();
-                        sleep(2000);
-                        this.宝物();
-                        sleep(2000);
-                        this.战士角色();
-                        sleep(2000);
-                        this.宝物提升();
-                        sleep(5000);
-                        this.法师角色();
-                        sleep(2000);
-                        this.宝物提升();
-                        sleep(5000);
-                        this.道士角色();
-                        sleep(2000);
-                        this.宝物提升();
-                        sleep(5000);
-                        this.点击返回按钮();
-                        sleep(2000);
-                        this.点击返回按钮();
-                        sleep(2000);
+        UTILS.toastLog('开始运行,1min后开始挑战');
+        // this.领取无限福利();
+        this.行会任务();
+        // this.点击副本();
+        // let 副本挑战次数 = 0;
+        // let 副本挑战时间 = setInterval(() => {
+        //     // this.点击副本挑战();
+        //     副本挑战次数 += 1;
+        //     if (副本挑战次数 > 0) {
+        //         clearInterval(副本挑战时间);
+        //         sleep(1000);
+        //         // this.点击副本扫荡();
+        //         var 扫荡次数 = 0;
+        //         let 副本扫荡时间 = setInterval(() => {
+        //             // this.点击副本扫荡();
+        //             扫荡次数 += 1;
+        //             console.log(扫荡次数);
+        //             if (扫荡次数 > 0) {
+        //                 clearInterval(副本扫荡时间);
+        //                 // sleep(2000);
+        //                 // this.点击经验副本();
+        //                 // sleep(2000);
+        //                 // this.点击经验副本挑战();
+        //                 // sleep(60000);
+        //                 // this.领取经验奖励();
+        //                 // sleep(2000);
+        //                 // this.点击经验副本挑战();
+        //                 // sleep(60000);
+        //                 // this.领取经验奖励();
+        //                 sleep(2000);
+        //                 this.点击通天塔();
+        //                 sleep(2000);
+        //                 this.领取通天塔每日奖励();
+        //                 // sleep(3000);
+        //                 // this.通天塔挑战();
+        //                 // this.通天塔挑战失败();
+        //                 // this.点击玩法();
+        //                 // sleep(2000);
+        //                 // this.进入玩法();
+        //                 // sleep(2000);
+        //                 // // this.自动掷骰子();
+        //                 sleep(2000);
+        //                 this.点击返回按钮();
+        //                 sleep(2000);
+        //                 this.点击角色();
+        //                 sleep(2000);
+        //                 if (this.判断有没有一键换装() != null) {
+        //                     this.点击一键换装();
+        //                 }
+        //                 // sleep(2000);
+        //                 // this.点击特戒();
+        //                 // sleep(2000);
+        //                 // this.点击特戒_item();
+        //                 // sleep(2000)
+        //                 // this.点击神装();
+        //                 // sleep(2000);
+        //                 // this.战士角色();
+        //                 // sleep(2000);
+        //                 // this.神装合成();
+        //                 // sleep(2000);
+        //                 // this.合成按钮();
+        //                 // sleep(2000);
+        //                 // this.法师角色();
+        //                 // sleep(2000);
+        //                 // this.神装合成();
+        //                 // sleep(2000);
+        //                 // this.合成按钮();
+        //                 // sleep(2000);
+        //                 // this.道士角色();
+        //                 // sleep(2000);
+        //                 // this.神装合成();
+        //                 // sleep(2000);
+        //                 // this.合成按钮();
+        //                 // sleep(2000);
+        //                 // this.点击返回按钮();
+        //                 sleep(2000);
+        //                 this.宝物();
+        //                 sleep(2000);
+        //                 this.战士角色();
+        //                 sleep(2000);
+        //                 this.宝物提升();
+        //                 sleep(5000);
+        //                 this.法师角色();
+        //                 sleep(2000);
+        //                 this.宝物提升();
+        //                 sleep(5000);
+        //                 this.道士角色();
+        //                 sleep(2000);
+        //                 this.宝物提升();
+        //                 sleep(5000);
+        //                 this.点击返回按钮();
+        //                 sleep(2000);
+        //                 this.点击返回按钮();
+        //                 sleep(2000);
 
-                        this.点击boss();
-                        sleep(2000);
-                        let boss挑战时间 = setInterval(() => {
-                            this.boss挑战();
-                            let boss挑战 = this.暂无挑战();
-                            let boss失败 = this.boss挑战失败();
-                            if(boss挑战 == null || boss失败 != null) {
-                                clearInterval(boss挑战时间);
-                            }
-                        },60000);
-                    }
-                }, 2000);
-            }
-        }, 2000);
+        //                 this.点击boss();
+        //                 sleep(2000);
+        //                 let 野外挑战次数 = 0;
+        //                 let boss挑战时间 = setInterval(() => {
+        //                     let 是否在首页 = this.判断是否在首页();
+        //                     if (是否在首页 == null) {
+        //                         let boss挑战 = this.暂无挑战();
+        //                         if (boss挑战 != null) {
+        //                             this.boss挑战();
+        //                         } else {
+        //                             clearInterval(boss挑战时间);
+        //                             sleep(2000);
+        //                             this.野外BOSS();
+        //                             sleep(2000);
+        //                             let 野外BOSS挑战 = setInterval(() => {
+        //                                 野外挑战次数 += 1;
+        //                                 log(野外挑战次数);
+        //                                 if (野外挑战次数 > 0) {
+        //                                     clearInterval(野外BOSS挑战);
+        //                                     this.boss之家();
+        //                                     let boss之家挑战 = setInterval(() => {
+        //                                         this.boss之家挑战();
+        //                                         sleep(2000);
+        //                                         this.boss之家挑战_item();
+        //                                         if(this.boss之家挑战_item() == null){
+        //                                             clearInterval(boss之家挑战);
+        //                                             sleep(5000);
+        //                                             this.点击返回按钮();
+        //                                             sleep(2000);
+        //                                         }
+        //                                     }, 30000)
+        //                                 } else {
+        //                                     this.野外BOSS挑战();
+        //                                     sleep(50000);
+        //                                     this.点击boss();
+        //                                     sleep(2000);
+        //                                     this.野外BOSS();
+        //                                     sleep(2000);
+        //                                 }
+        //                             }, 40000)
+        //                         }
+        //                     } else {
+        //                         clearInterval(boss挑战时间);
+        //                         this.点击boss();
+        //                         sleep(2000);
+        //                         this.野外BOSS();
+        //                         sleep(2000);
+        //                         let 野外BOSS挑战 = setInterval(() => {
+        //                             野外挑战次数 += 1;
+        //                             if (野外挑战次数 > 0) {
+        //                                 clearInterval(野外BOSS挑战);
+        //                                 this.boss之家();
+        //                                 let boss之家挑战 = setInterval(() => {
+        //                                     this.boss之家挑战();
+        //                                     sleep(2000);
+        //                                     this.boss之家挑战_item();
+        //                                     if(this.boss之家挑战_item() == null){
+        //                                         clearInterval(boss之家挑战);
+        //                                         sleep(5000);
+        //                                         this.点击返回按钮();
+        //                                         sleep(2000);
+        //                                     }
+        //                                 }, 30000)
+        //                             } else {
+        //                                 this.野外BOSS挑战();
+        //                                 sleep(50000);
+        //                                 this.点击boss();
+        //                                 sleep(2000);
+        //                                 this.野外BOSS();
+        //                                 sleep(2000);
+        //                             }
+        //                         }, 40000)
+        //                     }
+        //                 }, 40000);
+        //             }
+        //         }, 2000);
+        //     }
+        //     UTILS.toastLog('挑战成功,1min后开始挑战');
 
-
+        // }, 2000);
 
 
 
@@ -200,7 +267,7 @@ var main = function () {
         // sleep(4000);
         // this.锻造();
         // sleep(2500);
-        // this.一键强化();
+                                       // this.一键强化();
         // let 强化失败 = this.强化失败();
         // if(强化失败 != null){
         //     UTILS.click(1,1)
@@ -248,7 +315,7 @@ var main = function () {
         // sleep(2000);
         // this.boss之家分支挑战();
         // sleep(2000);
-        
+
     }
 
 
@@ -364,7 +431,7 @@ var main = function () {
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.通天塔每日奖励, 2, 0, 0.7))
         }
-        // UTILS.toastLog(arr);
+        UTILS.toastLog(arr);
         UTILS.click(arr[1].x, arr[1].y);
     }
 
@@ -422,7 +489,7 @@ var main = function () {
         for (var i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.一键换装, 2, 1, 0.7))
         }
-        console.log(arr);
+        console.log(arr + '点击一键换装');
         UTILS.click(arr[1].x, arr[1].y);
     }
 
@@ -681,12 +748,12 @@ var main = function () {
     this.野外BOSS = () => {
         let 野外BOSS = UTILS.findImage(IMAGE.野外boss, 1, 2, 0.7);
         UTILS.click(野外BOSS.x, 野外BOSS.y);
-        // console.log(野外BOSS);
+        console.log(野外BOSS, '野外BOSS');
     }
 
     this.野外BOSS挑战 = () => {
         let 野外BOSS挑战 = UTILS.findImage(IMAGE.野外boss挑战, 2, 2, 0.7);
-        // console.log(野外BOSS挑战,11111);
+        console.log(野外BOSS挑战, '野外BOSS挑战');
         UTILS.click(野外BOSS挑战.x, 野外BOSS挑战.y);
     }
 
@@ -696,15 +763,25 @@ var main = function () {
     }
 
     this.boss之家挑战 = () => {
-        let boss之家挑战 = UTILS.findImage(IMAGE.boss之家挑战, 2, 2, 0.7)
-        // console.log(boss之家挑战);
-        UTILS.click(boss之家挑战.x, boss之家挑战.y);
+        let boss之家挑战 = UTILS.findImage(IMAGE.boss之家挑战, 2, 2, 0.7);
+
+        console.log(boss之家挑战+'boss之家挑战');
+        if(boss之家挑战 == null){
+            return boss之家挑战;
+        }else{
+            UTILS.click(boss之家挑战.x, boss之家挑战.y);
+        }
+        
     }
 
     this.boss之家挑战_item = () => {
         let boss之家挑战分支 = UTILS.findImage(IMAGE.boss之家挑战分支, 2, 2, 0.7)
-        // console.log(boss之家挑战分支);
-        UTILS.click(boss之家挑战分支.x, boss之家挑战分支.y);
+        console.log(boss之家挑战分支+'boss之家挑战_item');
+        if(boss之家挑战分支 == null){
+            return;
+        }else{
+            UTILS.click(boss之家挑战分支.x, boss之家挑战分支.y);
+        }
     }
 
     this.boss之家分支挑战 = () => {
@@ -712,7 +789,7 @@ var main = function () {
         for (let i = 0; i < 2; i++) {
             arr.push(UTILS.findImage(IMAGE.boss之家分支挑战, 2, 2, 0.7));
         }
-        console.log(arr);
+        console.log(arr+'boss之家分支挑战');
         UTILS.click(arr[1].x, arr[1].y);
     }
 
@@ -763,9 +840,89 @@ var main = function () {
         console.log(怪物攻城);
     }
 
-    this.信息 = () => {
-       return 
-    
+    this.判断是否在首页 = () => {
+        var 副本 = UTILS.findImage(IMAGE.霸刀无限版, 2, 2);
+        return 副本;
+    }
+
+    this.领取无限福利 = () => {
+        var 无限福利 = UTILS.findImage(IMAGE.无限福利, 0, 1, 0.7);
+        log(无限福利,'无限福利');
+        sleep(3000);
+        UTILS.click(无限福利.x, 无限福利.y);
+        // UTILS.toastLog('请等待，两秒后开始领取');
+        let 无限福利领取次数 = setInterval(() => {
+            var 无限福利领取 = UTILS.findImage(IMAGE.无限福利领取, 2, 2, 0.7);
+            if(无限福利领取 == null){
+                clearInterval(无限福利领取次数);
+                sleep(2000);
+                var 传世神装 = UTILS.findImage(IMAGE.传世神装, 1, 2, 0.7);
+                UTILS.click(传世神装.x,传世神装.y);
+                sleep(2000);
+                let 传世神装次数 = setInterval(() => {
+                    var 传世神装领取 = UTILS.findImage(IMAGE.传世神装领取, 2, 2, 0.7);
+                    if(传世神装领取 == null){
+                        clearInterval(传世神装次数);
+                        var 无限特戒 = UTILS.findImage(IMAGE.无限特戒, 1, 2, 0.7);
+                        UTILS.click(无限特戒.x,无限特戒.y);
+                        sleep(2000);
+                        let 无限特戒次数 = setInterval(() => {
+                        var 无限特戒领取 = UTILS.findImage(IMAGE.无限特戒领取, 2, 2, 0.7);
+                        if(无限特戒领取 == null){
+                            clearInterval(无限特戒次数);
+                            this.点击返回按钮();
+                            sleep(2000);
+                        }else{
+                            UTILS.click(无限特戒领取.x, 无限特戒领取.y);
+                        }
+                        },2000);
+                    }else{
+                        UTILS.click(传世神装领取.x, 传世神装领取.y);
+                    }
+                },2000);
+            }else{
+                UTILS.click(无限福利领取.x, 无限福利领取.y);
+            }
+        },2000);
+    }
+
+
+    this.行会任务 = () => {
+        var 行会 = UTILS.findImage(IMAGE.行会, 0, 1, 0.7);
+        log(行会,'行会');
+        sleep(3000);
+        UTILS.click(行会.x, 行会.y);
+        sleep(2000);
+        var 行会大厅 = UTILS.findImage(IMAGE.行会大厅, 2, 1, 0.7);
+        log(行会大厅,'行会大厅');
+        sleep(3000);
+        UTILS.click(行会大厅.x, 行会大厅.y);
+        sleep(2000);
+        var 行会捐赠 = UTILS.findImage(IMAGE.行会捐赠, 2, 2, 0.7);
+        log(行会捐赠,'行会大厅');
+        sleep(3000);
+        UTILS.click(行会捐赠.x, 行会捐赠.y);
+        sleep(2000);
+        var 行会金币捐赠 = UTILS.findImage(IMAGE.行会金币捐赠, 2, 2, 0.7);
+        log(行会金币捐赠,'行会金币捐赠');
+        sleep(3000);
+        let 行会金币捐赠次数 = 0;
+        let 行会金币捐赠点击 = setInterval(() => {
+            UTILS.click(行会金币捐赠.x, 行会金币捐赠.y + 20);
+            行会金币捐赠次数+=1;
+            if(行会金币捐赠次数 == 1){
+                clearInterval(行会金币捐赠点击);
+                sleep(800);
+                UTILS.click(50, 50);
+                sleep(1500);
+                this.点击返回按钮();
+                sleep(2000);
+                var 活动大厅 = UTILS.findImage(IMAGE.活动大厅, 2, 2, 0.7);
+                log(活动大厅,'活动大厅'); 
+                UTILS.click(活动大厅.x, 活动大厅.y);
+            }
+        }, 2000);
+
     }
 
 
