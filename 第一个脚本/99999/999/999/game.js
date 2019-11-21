@@ -1012,7 +1012,7 @@ let main = function () {
                     UTILS.click(50, 50);
                     sleep(1500);
                     this.点击返回按钮();
-                    sleep(2000);
+                    // sleep(2000);
                     // let 活动大厅 = UTILS.findImage(IMAGE.活动大厅, 2, 2, 0.7);
                     // log(活动大厅,'活动大厅'); 
                     // UTILS.click(活动大厅.x, 活动大厅.y);
